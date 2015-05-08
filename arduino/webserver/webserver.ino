@@ -121,9 +121,26 @@ cliente.println("<html>");
 cliente.println("<head>"); 
 cliente.println("<meta http-equiv=Content-Type content=text/html; charset=utf-8 />");
 
-cliente.println("<meta http-equiv=\"Refresh\" content=\"1;url=http://www.dominio.com?id=");
-cliente.println(stado1);
-cliente.println(">");
+//cliente.println("<meta http-equiv=\"Refresh\" content=\"1;url=http://www.dominio.com?id=\"");
+//cliente.println(stado1);
+//cliente.println("/>");
+
+
+
+cliente.print("<meta http-equiv=\"Refresh\" content=\"5;url=http://www.mads96.cl?");
+cliente.print("e1=");
+cliente.print(stado1);
+cliente.print("\">");
+
+
+
+
+//cliente.println("<script type=\"text/javascript\">");
+//cliente.print("window.location=\"http://www.mads96.com");
+//cliente.print("?e1=");
+//cliente.print(stado1);
+//cliente.print(";</script>");
+
 
 
 
@@ -131,7 +148,7 @@ cliente.println(">");
 cliente.println("<title>Titulo de tu web</title>");
 cliente.println("</head>");
 cliente.println("<body>");
-cliente.println("<A HREF=\"http://www.google.com\">Visita HTMLpoint</A>");
+cliente.println("<A HREF=\"http://www.google.com\">hola mundo</A>");
 cliente.println("</body>");
  break;
         }
@@ -148,5 +165,4 @@ cliente.println("</body>");
     cliente.stop();// Cierra la conexión
   }
 }
-
 
