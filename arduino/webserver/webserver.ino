@@ -11,7 +11,7 @@ EthernetServer servidor(80);
 
 //declara los pines
 //en este caso s= salidas (luz, ventilador, etc.., en ves de s se le puede asignar cualquier nombre). y declararemos E = entradas.
-//al estar conectado el shield ethernet solo podemos contar con los pines digitales desde el 2 hasta el 9, exceptuando el pin 4 que sera usado por la MicroSD
+//al estar conehctado el shield ethernet solo podemos contar con los pines digitales desde el 2 hasta el 9, exceptuando el pin 4 que sera usado por la MicroSD
 int s1=2;
 int s2=3;
 int s3=5;
