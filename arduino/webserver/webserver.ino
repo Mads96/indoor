@@ -11,7 +11,7 @@ EthernetServer servidor(80);
 
 //declara los pines
 //en este caso s= salidas (luz, ventilador, etc.., en ves de s se le puede asignar cualquier nombre). y declararemos E = entradas.
-//al estar conehctado el shield ethernet solo podemos contar con los pines digitales desde el 2 hasta el 9, exceptuando el pin 4 que sera usado por la MicroSD
+//al estar conectado el shield ethernet solo podemos contar con los pines digitales desde el 2 hasta el 9, exceptuando el pin 4 que sera usado por la MicroSD
 int s1=2;
 int s2=3;
 int s3=5;
@@ -120,10 +120,18 @@ cliente.println(); //Página Web en HTML
 cliente.println("<html>"); 
 cliente.println("<head>"); 
 cliente.println("<meta http-equiv=Content-Type content=text/html; charset=utf-8 />");
+
+cliente.println("<meta http-equiv=\"Refresh\" content=\"1;url=http://www.dominio.com?id=");
+cliente.println(stado1);
+cliente.println(">");
+
+
+
+
 cliente.println("<title>Titulo de tu web</title>");
 cliente.println("</head>");
 cliente.println("<body>");
-cliente.println(stado1);
+cliente.println("<A HREF=\"http://www.google.com\">Visita HTMLpoint</A>");
 cliente.println("</body>");
  break;
         }
@@ -140,6 +148,5 @@ cliente.println("</body>");
     cliente.stop();// Cierra la conexión
   }
 }
-
 
 
