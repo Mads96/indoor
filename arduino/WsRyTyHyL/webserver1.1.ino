@@ -1,6 +1,13 @@
 //librerias
 #include <SPI.h>
 #include <Ethernet.h> 
+//DTH
+#include "DHT.h"
+DHT dht1(2,DHT22); 
+DHT dht2(3,DHT22); 
+int l=0;
+int lx=0;
+//fin DTH
 
 //Declaración de la direcciones MAC e IP. También del puerto 80 
 byte mac[] = { 
@@ -37,6 +44,13 @@ String stado7=String(3);
 //aqui declaro los estados las variables int (int son variables de numeros enteros):
 
 void setup() {
+  //inicio DTH
+  Serial.begin(9600); 
+  Serial.println("MADS96.cl\n\nIN DOOR!");
+  Serial.println();
+  dht1.begin();
+  //fin DTH
+  
 Ethernet.begin(mac, ip); //Inicializamos con las direcciones asignadas 
 servidor.begin(); 
 
@@ -78,6 +92,35 @@ stado7="OFF";
 //aqui comienza el programa que se correra eternamente.
 void loop() {
   
+  //inicio DTH
+    delay(2000);
+  float h = dht1.readHumidity();
+  float t = dht1.readTemperature();
+  float h1 = dht2.readHumidity();
+  float t1 = dht2.readTemperature();
+  lx=analogRead (0);
+  if (isnan(h) || isnan(t)) {
+    Serial.println("Falla al leer el sensor DHT!");
+    
+  }
+  Serial.print("Humedad: "); 
+  Serial.print(h);
+  Serial.println(" %\t");
+  Serial.print("Temperatura: "); 
+  Serial.print(t);
+  Serial.println(" *C ");
+  Serial.print("Humedad: "); 
+  Serial.print(h1);
+  Serial.println(" %\t");
+  Serial.print("Temperatura: "); 
+  Serial.print(t1);
+  Serial.println(" *C ");
+  Serial.print("LUZ: "); 
+  Serial.print(lx);
+  Serial.println(" brillo ");
+  Serial.println();
+
+  //Fin DTH
   
 //NO LO ENTIENDO... Desde aqui   
 //EthernetClient Crea un cliente que se puede conectar a una dirección específica de Internet IP...  
@@ -149,6 +192,10 @@ cliente.println("<title>Titulo de tu web</title>");
 cliente.println("</head>");
 cliente.println("<body>");
 cliente.println("<A HREF=\"http://www.google.com\">hola mundo</A>");
+cliente.println(h);
+cliente.println(h1);
+cliente.println(t1);
+cliente.println(lx);
 cliente.println("</body>");
  break;
         }
