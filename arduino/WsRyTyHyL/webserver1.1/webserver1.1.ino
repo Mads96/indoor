@@ -170,8 +170,8 @@ cliente.println("<meta http-equiv=Content-Type content=text/html; charset=utf-8 
 
 
 
-cliente.print("<meta http-equiv=\"Refresh\" content=\"1;url=http://www.mads96.cl?");
-cliente.print("e1=");
+cliente.print("<meta http-equiv=\"Refresh\" content=\"10;url=http://www.mads96.cl/lamp.php");
+cliente.print("?e1=");
 cliente.print(stado1);
 cliente.print("\">");
 
