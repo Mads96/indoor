@@ -19,12 +19,12 @@ EthernetServer servidor(80);
 //declara los pines
 //en este caso s= salidas (luz, ventilador, etc.., en ves de s se le puede asignar cualquier nombre). y declararemos E = entradas.
 //al estar conectado el shield ethernet solo podemos contar con los pines digitales desde el 2 hasta el 9, exceptuando el pin 4 que sera usado por la MicroSD
-int s1=2;
+int s1=8;
 int s2=3;
 int s3=5;
 int s4=6;
 int s5=7;
-int s6=8;
+int s6=2;
 int s7=9;
 
 
@@ -127,11 +127,14 @@ void loop() {
 EthernetClient cliente= servidor.available(); 
 if(cliente) {
 boolean lineaenblanco=true; 
+String cadena=""; 
 while(cliente.connected()) {
 if(cliente.available()) {
 char c=cliente.read(); 
 if(readString.length()<30) {
 readString.concat(c);
+Serial.write(c);
+cadena.concat(c);
 //Cliente conectado
 //Leemos petición HTTP caracter a caracter
 //Almacenar los caracteres en la variable readString
@@ -144,13 +147,13 @@ readString.concat(c);
 //S1
 if(c=='\n' && lineaenblanco) //Si la petición HTTP ha finalizado 
 {
-int LED = readString.indexOf("LED="); 
-if(readString.substring(LED,LED+5)=="LED=a") {
-digitalWrite(s1,HIGH);
-stado1="ON"; } 
-else if (readString.substring(LED,LED+5)=="LED=b") {
-digitalWrite(s1,LOW); 
-stado1="OFF";
+int LED = cadena.indexOf("s1="); 
+if(cadena.substring(LED)=="s1=ON") {
+digitalWrite(s1,LOW);
+stado1="OFF"; } 
+else if (cadena.substring(LED)=="s1=OFF") {
+digitalWrite(s1,HIGH); 
+stado1="ON";
 }
 
 
@@ -164,15 +167,19 @@ cliente.println("<html>");
 cliente.println("<head>"); 
 cliente.println("<meta http-equiv=Content-Type content=text/html; charset=utf-8 />");
 
-//cliente.println("<meta http-equiv=\"Refresh\" content=\"1;url=http://www.dominio.com?id=\"");
+//cliente.println("<meta http-equiv=\"Refresh\" content=\"5;url=http://localhost/indoor/lampm.php?id=\"");
 //cliente.println(stado1);
 //cliente.println("/>");
 
 
 
-cliente.print("<meta http-equiv=\"Refresh\" content=\"10;url=http://www.mads96.cl/lamp.php");
-cliente.print("?e1=");
+cliente.print("<meta http-equiv=\"Refresh\" content=\"5;url=http://localhost/indoor/lampm.php");
+cliente.print("?s1=");
 cliente.print(stado1);
+cliente.print("&");
+cliente.print(cadena);
+cliente.print("&");
+cliente.print(LED);
 cliente.print("\">");
 
 
