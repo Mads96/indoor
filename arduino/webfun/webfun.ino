@@ -55,7 +55,7 @@ void loop()
   
   if (isnan(h) || isnan(t)) {
     Serial.println("Falla al leer el sensor DHT!");
-    return;
+    
   }
   //fin DHT
   
@@ -126,39 +126,32 @@ cliente.println("<!DOCTYPE html>");
 cliente.println("<html>"); 
 cliente.println("<head>"); 
 cliente.println("<meta http-equiv=Content-Type content=text/html; charset=utf-8 />");
-cliente.print("<meta http-equiv=\"Refresh\" content=\"15;url=http://localhost/indoor/lampm.php");
-cliente.print("?s1=");
-cliente.print(est1);
-cliente.print("&s2=");
-cliente.print(est2);
+cliente.print("<meta http-equiv=\"Refresh\" content=\"2;url=http://desarrollo.mads96.cl/monitoreo.php");
+cliente.print("?h1=");
+cliente.print(h);
+cliente.print("&t1=");
+cliente.print(t);
+cliente.print("&h2=");
+cliente.print(h);
+cliente.print("&t2=");
+cliente.print(t);
+cliente.print("&h3=");
+cliente.print(h);
+cliente.print("&t3=");
+cliente.print(t);
+cliente.print("&ht1=");
+cliente.print(t1);
+cliente.print("&ht2=");
+cliente.print(t2);
 
 
 cliente.print("\">");
 cliente.println("<title>Titulo de tu web</title>");
+cliente.println("<meta name=\"viewport\" content=\"width=device-width, minimum-scale=1.0, maximum-scale=1.0\" />");
 cliente.println("</head>");
-cliente.println("<body>");
-cliente.println("Cargando Datos,");
+cliente.println("<body bgcolor=\"green\">");
+cliente.println("<img src=\"http://desarrollo.mads96.cl/imagenes/cargando.gif\"><font color=\"white\"><h2>cargando datos...</h2></font>");
 cliente.println("<br/>");
-cliente.println("H1=");
-cliente.println(h);
-cliente.println("<br/>");
-cliente.println("T1=");
-cliente.println(t);
-cliente.println("<br/>");
-cliente.println("<br/>");
-cliente.println("H2=");
-cliente.println(h1);
-cliente.println("<br/>");
-cliente.println("T2=");
-cliente.println(t1);
-cliente.println("<br/>");
-cliente.println("<br/>");
-cliente.println("H3=");
-cliente.println(h2);
-cliente.println("<br/>");
-cliente.println("T3=");
-cliente.println(t2);
-
 //cliente.println(h);
 //cliente.println(h1);
 //cliente.println(t1);
