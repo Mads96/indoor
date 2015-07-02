@@ -126,7 +126,7 @@ cliente.println("<!DOCTYPE html>");
 cliente.println("<html>"); 
 cliente.println("<head>"); 
 cliente.println("<meta http-equiv=Content-Type content=text/html; charset=utf-8 />");
-cliente.print("<meta http-equiv=\"Refresh\" content=\"2;url=http://desarrollo.mads96.cl/monitoreo.php");
+cliente.print("<meta http-equiv=\"Refresh\" content=\"2;url=http://localhost/smart/monitoreo.php");
 cliente.print("?h1=");
 cliente.print(h);
 cliente.print("&t1=");
