@@ -49,8 +49,8 @@ void loop()
   float t = dht1.readTemperature();
   float h1 = dht2.readHumidity();
   float t1 = dht2.readTemperature();
-   float h2 = dht2.readHumidity();
-  float t2 = dht2.readTemperature();
+   float h2 = dht3.readHumidity();
+  float t2 = dht3.readTemperature();
   lx=analogRead (1);
   
   if (isnan(h) || isnan(t)) {
@@ -132,17 +132,17 @@ cliente.print(h);
 cliente.print("&t1=");
 cliente.print(t);
 cliente.print("&h2=");
-cliente.print(h);
+cliente.print(h1);
 cliente.print("&t2=");
-cliente.print(t);
-cliente.print("&h3=");
-cliente.print(h);
-cliente.print("&t3=");
-cliente.print(t);
-cliente.print("&ht1=");
 cliente.print(t1);
-cliente.print("&ht2=");
+cliente.print("&h3=");
+cliente.print(h2);
+cliente.print("&t3=");
 cliente.print(t2);
+cliente.print("&ht1=");
+cliente.print("nada 1");
+cliente.print("&ht2=");
+cliente.print("nada 2");
 
 
 cliente.print("\">");
