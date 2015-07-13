@@ -126,7 +126,7 @@ cliente.println("<!DOCTYPE html>");
 cliente.println("<html>"); 
 cliente.println("<head>"); 
 cliente.println("<meta http-equiv=Content-Type content=text/html; charset=utf-8 />");
-cliente.print("<meta http-equiv=\"Refresh\" content=\"2;url=http://localhost/smart/monitoreo.php");
+cliente.print("<meta http-equiv=\"Refresh\" content=\"2;url=http://localhost/desarrollo/monitoreo.html");
 cliente.print("?h1=");
 cliente.print(h);
 cliente.print("&t1=");
@@ -140,9 +140,9 @@ cliente.print(h2);
 cliente.print("&t3=");
 cliente.print(t2);
 cliente.print("&ht1=");
-cliente.print("nada 1");
+cliente.print("%");
 cliente.print("&ht2=");
-cliente.print("nada 2");
+cliente.print("%");
 
 
 cliente.print("\">");
