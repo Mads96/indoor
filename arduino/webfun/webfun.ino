@@ -6,12 +6,19 @@
 
  //DHT
  #include "DHT.h"
-DHT dht1(2,DHT22); 
-DHT dht2(3,DHT22); 
-DHT dht3(5,DHT22); 
-int l=0;
-int lx=0;
+DHT dht1(2,DHT22); //sensor 1
+DHT dht2(3,DHT22); //sensor 1
+DHT dht3(5,DHT22); //sensor 1
  //fin DHT
+int l=0;
+int luz=0;
+float tierra1;
+float tierrax1;
+float tierra2;
+float tierrax2;
+float tierra3;
+float tierrax3;
+
 
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };//Ponemos la dirección MAC de la Ethernet Shield que está con una etiqueta debajo la placa
@@ -40,24 +47,52 @@ void setup()
  
 void loop()
 {
-  Serial.println(analogRead(0)); //lectura analógica
-	Serial.println(digitalRead(10)); //lectura digital
-	delay(100);
+  
   //DHT
    delay(2000);
-  float h = dht1.readHumidity();
-  float t = dht1.readTemperature();
-  float h1 = dht2.readHumidity();
-  float t1 = dht2.readTemperature();
-   float h2 = dht3.readHumidity();
-  float t2 = dht3.readTemperature();
-  lx=analogRead (1);
+  float h1 = dht1.readHumidity();
+  float t1 = dht1.readTemperature();
+  float h2 = dht2.readHumidity();
+  float t2 = dht2.readTemperature();
+  float h3 = dht3.readHumidity();
+  float t3 = dht3.readTemperature();
+  luz=analogRead (1);
+  tierrax1 = analogRead(0);
+  tierra1=((100*tierrax1)/1024);
+
+  tierrax2 = analogRead(1);
+  tierra2=((100*tierrax2)/1024);
+
+  tierrax3 = analogRead(2);
+  tierra3=((100*tierrax3)/1024);
   
-  if (isnan(h) || isnan(t)) {
+  if (isnan(h1) || isnan(t1)) {
     Serial.println("Falla al leer el sensor DHT!");
     
   }
   //fin DHT
+
+  //MONITOREO POR CONSOLA!!//////////////////////////////////////
+  Serial.print("Tierra 1= ");
+  Serial.println(tierra1); //lectura analógica
+    Serial.print("Tierra 2= ");
+  Serial.println(tierra2); //lectura analógica
+    Serial.print("Tierra 3= ");
+  Serial.println(tierra3); //lectura analógica
+    Serial.print("Humedad 1= ");
+  Serial.println(h1); //lectura analógica
+    Serial.print("Humedad 2= ");
+  Serial.println(h2); //lectura analógica
+    Serial.print("Humedad 3= ");
+  Serial.println(h3); //lectura analógica
+    Serial.print("Temperatura 1= ");
+  Serial.println(t1); //lectura analógica
+    Serial.print("Temperatura 2= ");
+  Serial.println(t2); //lectura analógica
+    Serial.print("Temperatura 3= ");
+  Serial.println(t3); //lectura analógica
+  delay(50);
+  //FIN MONITOREO POR CONSOLA!!//////////////////////////////////////
   
   EthernetClient cliente = server.available(); //Creamos un cliente Web
   //Cuando detecte un cliente a través de una petición HTTP
@@ -69,6 +104,7 @@ void loop()
       if (cliente.available()) {
         char c = cliente.read();//Leemos la petición HTTP carácter por carácter
         Serial.write(c);//Visualizamos la petición HTTP por el Monitor Serial
+        
         cadena.concat(c);//Unimos el String 'cadena' con la petición HTTP (c). De esta manera convertimos la petición HTTP a un String
  
          //Ya que hemos convertido la petición HTTP a una cadena de caracteres, ahora podremos buscar partes del texto.
@@ -126,23 +162,23 @@ cliente.println("<!DOCTYPE html>");
 cliente.println("<html>"); 
 cliente.println("<head>"); 
 cliente.println("<meta http-equiv=Content-Type content=text/html; charset=utf-8 />");
-cliente.print("<meta http-equiv=\"Refresh\" content=\"2;url=http://localhost/desarrollo/monitoreo.html");
+cliente.print("<meta http-equiv=\"Refresh\" content=\"2;url=http://localhost/desarrollo/monitoreo.php");
 cliente.print("?h1=");
-cliente.print(h);
-cliente.print("&t1=");
-cliente.print(t);
-cliente.print("&h2=");
 cliente.print(h1);
-cliente.print("&t2=");
+cliente.print("&t1=");
 cliente.print(t1);
-cliente.print("&h3=");
+cliente.print("&h2=");
 cliente.print(h2);
-cliente.print("&t3=");
+cliente.print("&t2=");
 cliente.print(t2);
+cliente.print("&h3=");
+cliente.print(h3);
+cliente.print("&t3=");
+cliente.print(t3);
 cliente.print("&ht1=");
-cliente.print("%");
+cliente.print(tierra1);
 cliente.print("&ht2=");
-cliente.print("%");
+cliente.print(tierra2);
 
 
 cliente.print("\">");
